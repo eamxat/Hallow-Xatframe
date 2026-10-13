@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#110524">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Hallow Xatframe</title>
+<title>HALLOWEEN — ESCENA ANIMADA</title>
 <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/eamxat/Hallow-/refs/heads/main/favicon-16x16.png">
 <link rel="shortcut icon" type="image/png" href="https://raw.githubusercontent.com/eamxat/Hallow-/refs/heads/main/favicon-16x16.png">
 <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/eamxat/Hallow-/refs/heads/main/favicon-16x16.png">
@@ -32,7 +32,6 @@
   }
   #scene > * { position: absolute; display: block; pointer-events: none; user-select: none; -webkit-user-select: none; -moz-user-select: none; -webkit-user-drag: none; }
   #scene img { -webkit-user-drag: none; user-select: none; -webkit-user-select: none; }
-  #loading { inset: 0; display: flex !important; align-items: center; justify-content: center; color: #b99; font: 14px ui-monospace, Menlo, monospace; letter-spacing: .08em; }
 
   /* ---------- LUNA: glow pequeño y vibrante (late); el halo se recorta a la forma del cielo ---------- */
   .moon img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; animation: moonGlow 2.8s ease-in-out infinite alternate; }
@@ -54,26 +53,21 @@
   }
 
   /* ---------- MURCIÉLAGOS: aleteo del cuerpo entero (sin partirlo) + vuelo dinámico ---------- */
-  /* Capa 1: Desplazamiento amplio en X/Y, rotación (inclinación) y escala (profundidad Z) */
   .bat .drift { position: absolute; inset: 0; animation: batFly var(--fly) cubic-bezier(0.45, 0, 0.55, 1) var(--delay) infinite; will-change: transform; }
-  /* Capa 2: Un "flote" vertical suave e independiente para dar sensación orgánica */
   .bat .body  { position: absolute; inset: 0; animation: batBob 4.1s ease-in-out var(--delay) infinite alternate; will-change: transform; }
-  /* Capa 3: El aleteo rápido y seco del sprite (aplastamiento en Y y pequeño bote vertical) */
   .bat img    { position: absolute; left: 0; top: 0; width: 100%; height: 100%; transform-origin: 50% 50%; animation: batBeat var(--dur) linear var(--delay) infinite; will-change: transform; }
   
-  /* Aleteo ultra-realista con SVG: las alas se pliegan (scaleX) y empujan hacia abajo (scaleY) */
   @keyframes batBeat {
     0%   { transform: scale(1, 1) translateY(0); }
-    4%   { transform: scale(0.4, 1.1) translateY(-8%); } /* Cierra alas (hacia arriba) */
-    8%   { transform: scale(1.05, 0.8) translateY(4%); } /* Abre alas y empuja hacia abajo */
+    4%   { transform: scale(0.4, 1.1) translateY(-8%); }
+    8%   { transform: scale(1.05, 0.8) translateY(4%); }
     12%  { transform: scale(0.4, 1.1) translateY(-8%); }
     16%  { transform: scale(1.05, 0.8) translateY(4%); }
     20%  { transform: scale(0.4, 1.1) translateY(-8%); }
-    24%  { transform: scale(1, 1) translateY(0); }       /* Planeo */
+    24%  { transform: scale(1, 1) translateY(0); }
     100% { transform: scale(1, 1) translateY(0); }
   }
   
-  /* Trayectoria de vuelo más errática y natural, imitando cazadores nocturnos */
   @keyframes batFly {
     0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
     15%  { transform: translate(calc(var(--u) * 90), calc(var(--u) * -70)) rotate(20deg) scale(1.1); }
@@ -84,14 +78,13 @@
     100% { transform: translate(0, 0) rotate(0deg) scale(1); }
   }
   
-  /* Flote vertical con una pizca de rotación extra para más fluidez */
   @keyframes batBob {
     0%   { transform: translateY(calc(var(--u) * -35)) rotate(-3deg); }
     100% { transform: translateY(calc(var(--u) * 35)) rotate(3deg); }
   }
 
   /* ---------- NUBES DEL CIELO: se forman, derivan bien a la vista y se disuelven ---------- */
-  .cloudbox { filter: url(#cloudBoost); }                    /* sube la opacidad real de la nube (CLOUD_BOOST) */
+  .cloudbox { filter: url(#cloudBoost); }
   .cloudbox img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
   .cloudlife { animation: cloudLife var(--dur) linear var(--delay) infinite; will-change: transform, opacity; }
   @keyframes cloudLife {
@@ -122,7 +115,7 @@
     60% { filter: brightness(.95) drop-shadow(0 0 calc(var(--u) * 9) rgba(255,145,35,.60)); }
     74% { filter: brightness(1.50) drop-shadow(0 0 calc(var(--u) * 20) rgba(255,165,55,.95)); }
     88% { filter: brightness(1.10) drop-shadow(0 0 calc(var(--u) * 11) rgba(255,150,40,.70)); }
-    90% { filter: brightness(.10) drop-shadow(0 0 calc(var(--u) * 0) rgba(255,150,40,0)); }  /* parpadeo */
+    90% { filter: brightness(.10) drop-shadow(0 0 calc(var(--u) * 0) rgba(255,150,40,0)); }
     92% { filter: brightness(.10) drop-shadow(0 0 calc(var(--u) * 0) rgba(255,150,40,0)); }
     95% { filter: brightness(1.40) drop-shadow(0 0 calc(var(--u) * 18) rgba(255,160,50,.90)); }
   }
@@ -159,7 +152,7 @@
     background: radial-gradient(ellipse at center, rgba(180, 160, 220, 0.28) 0%, rgba(180, 160, 220, 0.12) 45%, rgba(180, 160, 220, 0) 75%);
     filter: blur(calc(var(--u) * 70));
     border-radius: 50%;
-    opacity: 0; /* Inicia oculta hasta dar clic */
+    opacity: 0;
     will-change: transform, opacity;
   }
   #layer-mist.mist-active .mist-cloud {
@@ -229,7 +222,7 @@
 <svg width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><filter id="cloudBoost" color-interpolation-filters="sRGB"><feComponentTransfer><feFuncA id="cloudBoostFn" type="linear" slope="2"/></feComponentTransfer></filter></svg>
 <audio id="pumpkinAudio" src="https://raw.githubusercontent.com/eamxat/Hallow-/main/laugh.mp3" preload="auto" playsinline webkit-playsinline></audio>
 
-<div id="scene"><div id="loading">cargando…</div></div>
+<div id="scene"></div>
 
 <div id="debug-panel" class="panel">
   <h3>Archivos de GitHub → rol (reconocidos por su forma)</h3>
@@ -250,7 +243,7 @@
 </div>
 
 <script>
-const CW = 2870, CH = 1425;   // lienzo maestro
+const CW = 2870, CH = 1425;
 const BASE = "https://raw.githubusercontent.com/eamxat/Hallow-/refs/heads/main/";
 const ARCHIVOS = [
   "Curva%20(3).png", "Curva%20(1).png", "Curva%20(2).png", "Curva.png",
@@ -260,10 +253,10 @@ const ARCHIVOS = [
 ].map(n => BASE + n);
 
 const ROLES_MANUAL = {
-  calabazas:   "Grupo de 3 objetos (3).png",   // las 3 calabazas
-  ojos:        "Grupo de 3 objetos (2).png",   // las caras/ojos de las calabazas: van ENCIMA y parpadean
-  murcielagos: "Grupo de 3 objetos.png",       // los 3 murciélagos en un solo archivo: se separan y aletean
-  nubes:       "Grupo de 4 objetos.png"         // las nubes del cielo (4): a tamaño real, aparecen y se disuelven
+  calabazas:   "Grupo de 3 objetos (3).png",
+  ojos:        "Grupo de 3 objetos (2).png",
+  murcielagos: "Grupo de 3 objetos.png",
+  nubes:       "Grupo de 4 objetos.png"
 };
 const IGNORAR = ["Curva (1).png", "Curva (3).png"];
 const HINTS = {};
@@ -677,7 +670,6 @@ async function main() {
   // --- NIEBLA: Capa en pantalla completa ---
   layers.push({ id: "mist", x: 0, y: 0, w: CW, h: CH, z: 300, origen: "generado por CSS full-screen", type: "mist" });
 
-  document.getElementById("loading").remove();
   build(layers);
   makeHalo(loaded);
   if (EDIT) setupEdit();
